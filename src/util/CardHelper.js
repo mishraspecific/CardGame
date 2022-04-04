@@ -28,7 +28,7 @@ const getShuffledArr = arr => {
 };
 
 /**
- *
+ * Create array of numbers for a given length as param
  * @param {*} length
  * @returns
  */
@@ -65,27 +65,32 @@ const getRandomNumber = (min, max) => {
  * @returns
  */
 const duplicateArray = arrayToDuplicate => {
-  return arrayToDuplicate.reduce((preValue, current, index, array) => {
+  return arrayToDuplicate.reduce((preValue, current) => {
     return preValue.concat([current, current]);
   }, []);
 };
 
-const getCardgameData = (intialObject, objectToMerge) => {
-  return {...intialObject, ...objectToMerge};
-};
-
+/**
+ * Check if game over if all card matched in pair
+ * @param {*} flippedArray
+ * @returns
+ */
 export const isGameOver = flippedArray => {
-  return flippedArray.every(
-    (element, index, array) => element.flipped !== false,
-  );
+  return flippedArray.every(element => element.flipped === false);
 };
 
+/**
+ * It converts shuffled card array of numbers to array of objects
+ * and it returned converted array of objects
+ * @param {*} shuffledArray
+ * @returns
+ */
 export const arrayToCardData = shuffledArray => {
   let dataArray = [];
-  shuffledArray.map((number, index) => {
+  shuffledArray.map((cardNumber, index) => {
     let data = {
-      value: number,
       id: index,
+      value: cardNumber,
       flipped: false,
     };
     dataArray.push(data);
@@ -94,6 +99,12 @@ export const arrayToCardData = shuffledArray => {
   return dataArray;
 };
 
+/**
+ * It find index of element in given array
+ * @param {*} array
+ * @param {*} elementToFind
+ * @returns
+ */
 export const findArrayElementIndex = (array, elementToFind) => {
   if (array == undefined && array.length == 0) return -1;
   let index = array.findIndex(item => item.id == elementToFind.id);

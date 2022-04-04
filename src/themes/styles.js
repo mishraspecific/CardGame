@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {Colors} from './Color';
 
-export default commonStyles = StyleSheet.create({
+const commonStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.PRIMARY_COLOR,
@@ -38,3 +38,5 @@ export default commonStyles = StyleSheet.create({
     textTransform: 'capitalize',
   },
 });
+
+export default commonStyles;

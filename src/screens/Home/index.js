@@ -1,12 +1,5 @@
 import React, {useCallback, useEffect, useState, useRef} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  FlatList,
-  Dimensions,
-  Alert,
-  Text,
-} from 'react-native';
+import {SafeAreaView, FlatList, Alert} from 'react-native';
 import GameCard from '../../components/GameCard';
 import Header from '../../components/Header';
 import en from '../../localization/lnagauges/en';
@@ -85,7 +78,7 @@ const Home = () => {
     setCounter(counter + 1);
   };
 
-  const onCardTouch = useCallback(({index, item}) => {
+  const onCardTouch = useCallback(({index}) => {
     incrementGameMoveCounter();
 
     var cardItemToFlip = cardNumbers[index];

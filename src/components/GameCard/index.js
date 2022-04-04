@@ -8,7 +8,6 @@ import {
   View,
 } from 'react-native';
 import {Colors} from '../../themes/Color';
-import Card from '../Card';
 
 //this will be used to decide the hard height / width based on screen size
 const screenWidth = Math.round(Dimensions.get('window').width);
@@ -17,7 +16,6 @@ const screenHeight = Math.round(Dimensions.get('window').height) - 80;
 const GameCard = ({item, onCardTouch}) => {
   const {flipped, value} = item.item;
   const animatedValue = useRef(new Animated.Value(0)).current;
-  let flipRotation = 0;
 
   const frontInterpolate = animatedValue.interpolate({
     inputRange: [0, 180],
@@ -35,7 +33,6 @@ const GameCard = ({item, onCardTouch}) => {
     transform: [{rotateY: backInterpolate}],
   };
 
-  // console.log('cardflip');
   const flipToFront = useCallback(() => {
     Animated.spring(animatedValue, {
       toValue: 180,
@@ -68,7 +65,7 @@ const GameCard = ({item, onCardTouch}) => {
 
   useEffect(() => {
     animatedValue.addListener(({value}) => {
-      flipRotation = value;
+      //flipRotation = value;
     });
   }, []);
 
