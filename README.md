@@ -10,7 +10,7 @@ https://github.com/mishraspecific/CardGame.git
 
 ### Documentation
 
-- [ ] Play Card game till all cards math in pair
+- [ ] Play Card game till all cards match in pair
 - [ ] Restart Game anytime
 
 
