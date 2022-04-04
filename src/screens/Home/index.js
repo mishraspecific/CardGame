@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState, useRef} from 'react';
 import {SafeAreaView, FlatList, Alert} from 'react-native';
 import GameCard from '../../components/GameCard';
 import Header from '../../components/Header';
-import en from '../../localization/lnagauges/en';
+import en from '../../localization/langauges/en';
 import {
   getCardPairValues,
   arrayToCardData,
@@ -32,7 +32,7 @@ const Home = () => {
       `${en.game_win_alert_msg} ${counter} ${en.move}`,
       [
         {
-          text: 'Play Again',
+          text: en.play_again,
           onPress: () => restartGame(),
         },
       ],

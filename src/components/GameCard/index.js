@@ -1,17 +1,6 @@
 import React, {useEffect, useRef, useCallback} from 'react';
-import {
-  Text,
-  Dimensions,
-  StyleSheet,
-  Animated,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import {Colors} from '../../themes/Color';
-
-//this will be used to decide the hard height / width based on screen size
-const screenWidth = Math.round(Dimensions.get('window').width);
-const screenHeight = Math.round(Dimensions.get('window').height) - 80;
+import {Text, Animated, TouchableOpacity, View} from 'react-native';
+import styles from './styles';
 
 const GameCard = ({item, onCardTouch}) => {
   const {flipped, value} = item.item;
@@ -33,6 +22,9 @@ const GameCard = ({item, onCardTouch}) => {
     transform: [{rotateY: backInterpolate}],
   };
 
+  /**
+   * flipTofront can be used to animate card to front
+   */
   const flipToFront = useCallback(() => {
     Animated.spring(animatedValue, {
       toValue: 180,
@@ -42,19 +34,29 @@ const GameCard = ({item, onCardTouch}) => {
     }).start();
   });
 
+  /**
+   * flipTofront can be used to animate card to back
+   */
   const flipToBack = useCallback(() => {
     Animated.spring(animatedValue, {
       toValue: 0,
       friction: 8,
       tension: 10,
-      useNativeDriver: true, // Add This line
+      useNativeDriver: true,
     }).start();
   });
 
-  const flipCard = () => {
+  /**
+   * It will get triggered on card press and callback will be
+   * trigggered to handle all game next move state
+   */
+  const onCardPress = () => {
     onCardTouch(item);
   };
 
+  /**
+   * It created to manage card flip on flipped state change for each card
+   */
   useEffect(() => {
     if (flipped) {
       flipToFront();
@@ -63,14 +65,8 @@ const GameCard = ({item, onCardTouch}) => {
     }
   }, [flipped]);
 
-  useEffect(() => {
-    animatedValue.addListener(({value}) => {
-      //flipRotation = value;
-    });
-  }, []);
-
   return (
-    <TouchableOpacity onPress={() => flipCard()}>
+    <TouchableOpacity onPress={() => onCardPress()}>
       <View>
         <Animated.View style={[styles.gameCard, backAnimatedStyle]}>
           <Text style={styles.cardTextBack}>{value}</Text>
@@ -85,41 +81,3 @@ const GameCard = ({item, onCardTouch}) => {
 };
 
 export default GameCard;
-
-const styles = StyleSheet.create({
-  gameCard: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: screenWidth / 3,
-    height: screenHeight / 4,
-    backgroundColor: Colors.white,
-    borderRadius: 5,
-    shadowColor: Colors.shadow,
-    shadowOffset: {width: 0, height: 0},
-    shadowOpacity: 1,
-    shadowRadius: 4,
-    elevation: 5,
-    marginVertical: 2,
-    marginHorizontal: 2,
-    padding: 8,
-    backfaceVisibility: 'hidden',
-    top: 1,
-  },
-  cardBack: {
-    position: 'absolute',
-    backgroundColor: Colors.CARD_FRONT,
-    top: 0,
-  },
-  cardTextFront: {
-    fontSize: 32,
-    textAlign: 'center',
-    color: Colors.white,
-    padding: 4,
-  },
-  cardTextBack: {
-    fontSize: 32,
-    textAlign: 'center',
-    color: Colors.SECONDARY_COLOR,
-    padding: 4,
-  },
-});

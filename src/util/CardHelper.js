@@ -76,7 +76,7 @@ const duplicateArray = arrayToDuplicate => {
  * @returns
  */
 export const isGameOver = flippedArray => {
-  return flippedArray.every(element => element.flipped === false);
+  return flippedArray.every(element => element.flipped === true);
 };
 
 /**
