@@ -18,7 +18,6 @@ const commonStyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
   },
   weatherDescription: {
     textTransform: 'capitalize',

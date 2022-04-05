@@ -24,10 +24,6 @@ const Home = () => {
   const [, updateState] = useState();
   const forceUpdate = useCallback(() => updateState({}), []);
 
-  const isCardMatched = (previousValue, value) => {
-    return previousValue === value;
-  };
-
   const showGameOverAlert = () => {
     Alert.alert(
       en.game_win_alert_title,
@@ -42,18 +38,35 @@ const Home = () => {
     );
   };
 
+  /**
+   * This callback will be triggered on restart game and
+   * it will reset all values to intial state
+   */
   const restartGame = () => {
     setCardNumbers(arrayToCardData(CARD_PAIRS_VALUE));
     setCounter(0);
     prevCardStack = [];
   };
 
+  /**
+   * This is use to check if game is over
+   */
   const checkIfGameOver = () => {
     if (isGameOver(cardNumbers)) {
       showGameOverAlert();
     }
   };
 
+  const isCardMatched = (previousValue, value) => {
+    return previousValue === value;
+  };
+
+  /**
+   * This  get triggred on card touch and it decided game next state
+   * (1) Card is mathed from previous card and shoud not flipp
+   * (2) card not matched and it should flip back
+   * @param {*} index
+   */
   const decideGameNextState = index => {
     let cardItem = cardNumbers[index];
 
@@ -100,7 +113,7 @@ const Home = () => {
     };
   }, []);
 
-  const renderItem = item => {
+  const renderCard = item => {
     return <GameCard item={item} onCardTouch={onCardTouch} />;
   };
 
@@ -111,7 +124,7 @@ const Home = () => {
         keyExtractor={item => item.id}
         extraData={cardNumbers}
         data={cardNumbers}
-        renderItem={renderItem}
+        renderItem={renderCard}
         numColumns={3}
       />
     </SafeAreaView>

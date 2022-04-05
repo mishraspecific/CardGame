@@ -1,10 +1,21 @@
 import React, {useEffect, useRef, useCallback} from 'react';
-import {Text, Animated, TouchableOpacity, View} from 'react-native';
+import {
+  Text,
+  Animated,
+  TouchableOpacity,
+  View,
+  useWindowDimensions,
+} from 'react-native';
+import commonStyles from '../../themes/styles';
 import styles from './styles';
 
 const GameCard = ({item, onCardTouch}) => {
+  const {height, width} = useWindowDimensions();
   const {flipped, value, id} = item.item;
   const animatedValue = useRef(new Animated.Value(0)).current;
+
+  const cardHeight = (height - 80) / 4;
+  const cardWidth = (width - 10) / 3;
 
   const frontInterpolate = animatedValue.interpolate({
     inputRange: [0, 180],
@@ -66,13 +77,26 @@ const GameCard = ({item, onCardTouch}) => {
   }, [flipped]);
 
   return (
-    <TouchableOpacity onPress={() => onCardPress()} testID={`card-${id}`}>
+    <TouchableOpacity
+      style={commonStyles.centeredView}
+      onPress={() => onCardPress()}
+      testID={`card-${id}`}>
       <View>
-        <Animated.View style={[styles.gameCard, backAnimatedStyle]}>
+        <Animated.View
+          style={[
+            styles.gameCard,
+            backAnimatedStyle,
+            {height: cardHeight, width: cardWidth},
+          ]}>
           <Text style={styles.cardTextBack}>{value}</Text>
         </Animated.View>
         <Animated.View
-          style={[styles.gameCard, styles.cardBack, frontAnimatedStyle]}>
+          style={[
+            styles.gameCard,
+            styles.cardBack,
+            frontAnimatedStyle,
+            {height: cardHeight, width: cardWidth},
+          ]}>
           <Text style={styles.cardTextFront}>{'?'}</Text>
         </Animated.View>
       </View>

@@ -1,7 +1,11 @@
-export const INITIAL_CARD_STATE = {
-  isFlipped: Array(16).fill(false),
-  shuffledCard: [],
-  clickCount: 1,
-  prevSelectedCard: -1,
-  prevCardId: -1,
+export const getCardHeight = (width, height) => {
+  return width > height ? width / 3 : height / 4;
+};
+
+export const getCardWidth = (width, height) => {
+  return width > height ? width / 4 : height / 3;
+};
+
+export const isPortrait = (width, height) => {
+  return height > width;
 };
