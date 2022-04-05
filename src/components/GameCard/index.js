@@ -3,7 +3,7 @@ import {Text, Animated, TouchableOpacity, View} from 'react-native';
 import styles from './styles';
 
 const GameCard = ({item, onCardTouch}) => {
-  const {flipped, value} = item.item;
+  const {flipped, value, id} = item.item;
   const animatedValue = useRef(new Animated.Value(0)).current;
 
   const frontInterpolate = animatedValue.interpolate({
@@ -66,7 +66,7 @@ const GameCard = ({item, onCardTouch}) => {
   }, [flipped]);
 
   return (
-    <TouchableOpacity onPress={() => onCardPress()}>
+    <TouchableOpacity onPress={() => onCardPress()} testID={`card-${id}`}>
       <View>
         <Animated.View style={[styles.gameCard, backAnimatedStyle]}>
           <Text style={styles.cardTextBack}>{value}</Text>

@@ -4,7 +4,6 @@ import {Colors} from '../../themes/Color';
 import styles from './styles';
 
 const Header = ({counter, onPress}) => {
-  console.log('Header', counter);
   return (
     <View style={styles.headerContainer}>
       <TouchableOpacity onPress={onPress}>

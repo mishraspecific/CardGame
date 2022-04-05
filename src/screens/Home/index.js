@@ -19,6 +19,8 @@ const Home = () => {
   const [counter, setCounter] = useState(0);
   var prevCardStack = useRef([]).current;
 
+  let timer = useRef(null).current;
+
   const [, updateState] = useState();
   const forceUpdate = useCallback(() => updateState({}), []);
 
@@ -85,13 +87,17 @@ const Home = () => {
     cardItemToFlip.flipped = true;
     setCardNumbers(cardNumbers);
 
-    setTimeout(() => {
+    timer = setTimeout(() => {
       decideGameNextState(index);
     }, 1000);
   });
 
   useEffect(() => {
     setCardNumbers(arrayToCardData(CARD_PAIRS_VALUE));
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
   const renderItem = item => {
