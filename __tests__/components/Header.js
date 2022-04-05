@@ -4,7 +4,7 @@ import {render, fireEvent, waitFor, act} from '@testing-library/react-native';
 import Header from '../../src/components/Header';
 
 describe('Header', () => {
-  test('check pnPress', async () => {
+  test('check onPress', async () => {
     const onPress = jest.fn();
 
     const component = <Header counter={'1'} onPress={onPress} />;
