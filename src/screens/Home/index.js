@@ -11,13 +11,17 @@ import {
 } from '../../util/CardHelper';
 
 import commonStyles from '../../themes/styles';
+import Congratulation from '../../components/Congratulation.js';
 
 const Home = () => {
   const CARD_PAIRS_VALUE = getCardPairValues();
 
   const [cardNumbers, setCardNumbers] = useState([]);
   const [counter, setCounter] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
+
   var prevCardStack = useRef([]).current;
+  //let gameOver = useRef(false).current;
 
   let timer = useRef(null).current;
 
@@ -46,6 +50,7 @@ const Home = () => {
     setCardNumbers(arrayToCardData(CARD_PAIRS_VALUE));
     setCounter(0);
     prevCardStack = [];
+    setGameOver(false);
   };
 
   /**
@@ -53,6 +58,7 @@ const Home = () => {
    */
   const checkIfGameOver = () => {
     if (isGameOver(cardNumbers)) {
+      setGameOver(true);
       showGameOverAlert();
     }
   };
@@ -127,6 +133,7 @@ const Home = () => {
         renderItem={renderCard}
         numColumns={3}
       />
+      {gameOver && <Congratulation isGameOver={gameOver} />}
     </SafeAreaView>
   );
 };
