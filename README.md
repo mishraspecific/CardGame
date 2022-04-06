@@ -12,6 +12,7 @@ https://github.com/mishraspecific/CardGame.git
 
 - [ ] Play Card game till all cards match in pair
 - [ ] Restart Game anytime
+- [ ] On Game over lottie full screen animation for congratulations.
 
 
 ### Build with
@@ -20,3 +21,5 @@ https://github.com/mishraspecific/CardGame.git
   - [React Native](https://reactnative.dev/) - A framework for building native apps with React
 - Navigation
   - [React Navigation](https://reactnavigation.org/) - Routing and navigation for your React Native apps
+- Lottie Animation
+  - [Lottie Animation](https://www.npmjs.com/package/lottie-react-native) -Lottie is a mobile library for Android and iOS that parses Adobe After Effects animations exported as JSON with bodymovin and renders them natively on mobile!
