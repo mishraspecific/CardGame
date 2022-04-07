@@ -23,3 +23,11 @@ https://github.com/mishraspecific/CardGame.git
   - [React Navigation](https://reactnavigation.org/) - Routing and navigation for your React Native apps
 - Lottie Animation
   - [Lottie Animation](https://www.npmjs.com/package/lottie-react-native) -Lottie is a mobile library for Android and iOS that parses Adobe After Effects animations exported as JSON with bodymovin and renders them natively on mobile!
+ 
+ ## 📝 License
+
+<img alt="License" src="https://img.shields.io/badge/license-MIT-%2304D361">
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
